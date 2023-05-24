@@ -287,9 +287,6 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    resetFacility(state) {
-      state.facility = {};
-    },
   },
   modules: {},
 });

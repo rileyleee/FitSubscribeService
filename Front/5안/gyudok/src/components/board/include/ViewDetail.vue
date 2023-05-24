@@ -1,13 +1,12 @@
 <template>
+
   <div>
     <h1>글 정보</h1>
     <div>
-      <video width="640" height="360" controls>
-        <source
-          :src="/assets/upload/20230524/1684916101034_158349.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <video :src="getFilePath(mymymy.fileName)"
+        ref="videoPlayer"
+        controls muted @click="playVideo"
+      ></video>
       <table>
         <tr>
           <td><label for="category"> 카테고리</label></td>
@@ -19,19 +18,19 @@
 
         <tr>
           <td>
-            <div>{{ board.category }}</div>
+            <div>{{ mymymy.category }}</div>
           </td>
           <td>
-            <div>{{ board.title }}</div>
+            <div>{{ mymymy.title }}</div>
           </td>
           <td>
-            <div>{{ board.content }}</div>
+            <div>{{ mymymy.content }}</div>
           </td>
           <td>
-            <div>{{ board.viewcnt }}</div>
+            <div>{{ mymymy.viewcnt }}</div>
           </td>
           <td>
-            <div>{{ board.regdate }}</div>
+            <div>{{ mymymy.regdate }}</div>
           </td>
         </tr>
       </table>
@@ -49,42 +48,45 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-// import { mapState } from "vuex";
+import axios from 'axios';
+
 export default {
   name: "ViewDetail",
-  computed: {
-    ...mapState(["board"]),
-    // ...mapState(["board.likeCnt"]),
+  data(){
+    return{
+      mymymy:{},
+    }
+  },
+  created(){
+    console.log(this.$route.query.id);
+    const API_URL = `http://localhost:9999/gyudok-board/board/${this.$route.query.id}`;
+      axios({
+        url: API_URL,
+        method: "GET",
+      })
+        .then((res) => {
+          console.log(res.data);
+          this.mymymy = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   },
   methods: {
-    getFilePath(filennnnn) {
-      const videoPath = `../assets/upload/${filennnnn}`; // 동영상 파일이 위치한 경로를 지정합니다.
-      return require(`${videoPath}`);
+    getFilePath(fileName) {
+      console.log("getfile")
+      const videoPath = `../assets/upload/${fileName}`; // 동영상 파일이 위치한 경로를 지정합니다.
+
+      return videoPath;
+      // @/assets/upload/20230524/1684927366902_158229.mp4
     },
-    // getFilePath(board) {
-    //   const videoPath = `@/assets/upload/${board.fileName}`; // 동영상 파일이 위치한 경로를 지정합니다.
-    //   return videoPath;
-    // },
-    // getFilePath(board) {
-    //   const videoPath = require(`@/assets/upload/${board.fileName}`);
-    //   return videoPath;
-    // },
-    // getFilePath(fileName) {
-    //   let temp = "assets/upload/";
-    //   return require(temp + fileName);
-    // },
-    // getFilePath(board) {
-    //   const videoPath = require("@/assets/upload/" + this.board.fileName);
-    //   return videoPath;
-    // },
-    // async likeUpdate() {
-    //   await this.$store.dispatch("updateLikeCnt", this.movie.id);
-    //   this.$router.push({
-    //     name: "movie-detail",
-    //     query: { id: this.$route.query.id },
-    //   });
-    // },
+
+   playVideo() {
+      const videoPlayer = this.$refs.videoPlayer;
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      }
+    },
   },
 };
 </script>

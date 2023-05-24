@@ -37,8 +37,8 @@ public class BoardRestController {
 	}
 
 	// 프론트 단에 저장
-	private String fileDir = "C:\\Users\\SSAFY\\Desktop\\FitSubscribePRJ\\5안\\gyudok\\src\\assets\\upload\\";
-
+	private String fileDir = "C:\\Users\\whddl\\Desktop\\최종 프로젝트\\Front\\5안\\gyudok\\src\\assets\\upload\\";
+	
 	// 게시글 등록하기
 	@PostMapping("/board")
 	public ResponseEntity<?> write(Board board, @RequestParam(value = "file", required = false) MultipartFile file)

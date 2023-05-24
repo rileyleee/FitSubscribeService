@@ -6,14 +6,32 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "FacilityMap",
   data() {
     return {
       map: null,
+      facility: "",
     };
   },
-  created() {},
+  created() {
+    console.log(this.$route.query.id);
+    const API_URL = `http://localhost:9999/gyudok-subs/facility/${this.$route.query.id}`;
+    axios({
+      url: API_URL,
+      method: "GET",
+    })
+      .then((res) => {
+        console.log(res.data);
+        this.facility = res.data;
+      }).then(this.loadScript())
+      .catch((err) => {
+        console.log(err);
+      });
+
+      
+  },
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.loadMap();
@@ -31,14 +49,17 @@ export default {
     },
 
     loadMap() {
+      //console.log(this.facility);
+      var facAddress = this.facility.fulladdress2;
+      var facName = this.facility.facname;
+      // console.log(facAddress);
+      // console.log(facName);
       const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
       var options = {
         //지도를 생성할 때 필요한 기본 옵션 -> 첫 위치는 관계 없음
         center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
         level: 3, //지도의 레벨(확대, 축소 정도)
       };
-      var facAddress = this.$store.state.facility.fulladdress1;
-      var facName = this.$store.state.facility.facname;
 
       this.map = new window.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
       // 주소-좌표 변환 객체를 생성합니다

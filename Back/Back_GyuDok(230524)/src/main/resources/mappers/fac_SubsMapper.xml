@@ -32,12 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="Facility">
 		SELECT * FROM
 		FACILITY
-		WHERE address1 LIKE concat ('%',
-		#{keyword}, '%') OR
+		WHERE ((address1 LIKE concat ('%',#{keyword}, '%') OR
 		address2 LIKE concat ('%', #{keyword}, '%') OR
 		facname LIKE concat ('%', #{keyword}, '%') OR
-		factype LIKE concat ('%',
-		#{keyword}, '%')
+		factype LIKE concat ('%',#{keyword}, '%') )AND fulladdress2 !="")
 	</select>
 
 	<!-- 운동 시설 상세 조회 -->

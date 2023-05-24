@@ -39,16 +39,22 @@
 
 <script>
 import FacilityMap from "./FacilityMap.vue";
-import { mapGetters } from "vuex";
+import axios from "axios";
+//import { mapGetters } from "vuex";
 
 export default {
   name: "FacilityDetail",
   components: {
     FacilityMap,
   },
-  computed: {
-    ...mapGetters(["facility"]),
+  data(){
+    return{
+      facility:"",
+    }
   },
+  // computed: {
+  //   ...mapGetters(["facility"]),
+  // },
   methods: {
     async UseFac() {
       let fac_use = {
@@ -65,11 +71,21 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getFacility", this.$route.query.id);
+    //this.$store.dispatch("getFacility", this.$route.query.id);
+    const API_URL = `http://localhost:9999/gyudok-subs/facility/${this.$route.query.id}`;
+      axios({
+        url: API_URL,
+        method: "GET",
+      })
+        .then((res) => {
+         //console.log(res.data);
+          this.facility = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   },
-  destroyed() {
-    this.$store.dispatch("resetFacility");
-  },
+  
 };
 </script>
 
