@@ -2,17 +2,13 @@
   <tr>
     <td>{{ no }}</td>
     <td>{{ address1 }}</td>
+    <td>{{ factype }}</td>
     <td>
-      {{ factype }}
+      <router-link :to="{ name: 'fac-detail', query: { id: id } }">
+        {{ facname }}
+      </router-link>
     </td>
-    <td>
-      <router-link :to="{ name: 'fac-detail', query: { id: id } }">{{
-        facname
-      }}</router-link>
-    </td>
-    <td>{{ rating }}</td>
     <td>{{ fulladdress2 }}</td>
-    <td>{{ id }}</td>
   </tr>
 </template>
 
@@ -31,4 +27,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+tr {
+  text-align: center;
+}
+</style>

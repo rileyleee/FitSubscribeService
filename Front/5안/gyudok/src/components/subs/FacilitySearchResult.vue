@@ -1,27 +1,23 @@
 <template>
-  <v-container>
-    <h1>검색한 운동 시설 목록</h1>
+  <div>
+    <h3>검색한 운동 시설 목록</h3>
 
     <div v-if="facilities.length">
       <table>
-        <colgroup>
+        <!-- <colgroup>
           <col />
           <col />
           <col />
           <col />
           <col />
-          <col />
-          <col />
-        </colgroup>
+        </colgroup> -->
         <thead>
           <tr>
-            <th>번호</th>
-            <th>지역구분</th>
-            <th>시설유형</th>
-            <th>시설명</th>
-            <th>평점</th>
-            <th>주소</th>
-            <th>인덱스</th>
+            <th> 번호 </th>
+            <th> 지역구분 </th>
+            <th> 시설유형 </th>
+            <th> 시설명 </th>
+            <th> 주소 </th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +36,7 @@
         </tbody>
       </table>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

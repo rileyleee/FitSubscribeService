@@ -1,8 +1,8 @@
 <template>
-  <v-container>
-    <h2>운동시설 위치 보기</h2>
-    <v-container id="map"> </v-container>
-  </v-container>
+  <div style="padding-top:20px">
+    <h4>운동시설 위치 보기</h4>
+    <div id="map"></div>
+  </div>
 </template>
 
 <script>
@@ -25,12 +25,11 @@ export default {
       .then((res) => {
         console.log(res.data);
         this.facility = res.data;
-      }).then(this.loadScript())
+      })
+      .then(this.loadScript())
       .catch((err) => {
         console.log(err);
       });
-
-      
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
@@ -95,9 +94,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #map {
-  width: 100%;
-  height: 400px;
+  width: 200%;
+  height: 700px;
+
 }
 </style>

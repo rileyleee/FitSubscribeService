@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <h1>나의 구독 내역</h1>
 
     <div v-if="subscriptions.length">
@@ -34,7 +34,7 @@
         </tbody>
       </table>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

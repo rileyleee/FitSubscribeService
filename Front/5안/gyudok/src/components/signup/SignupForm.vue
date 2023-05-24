@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <h2>등록폼작성하기</h2>
     <fieldset class="text-center">
       <label for="id">아이디</label>
@@ -29,7 +29,7 @@
       <input type="text" id="gender" v-model="gender" class="view" /><br />
       <button class="btn" @click="regist">등록</button>
     </fieldset>
-  </v-app>
+  </div>
 </template>
 <script>
 // import { mapGetters, mapState } from "vuex";

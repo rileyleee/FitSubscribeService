@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <div id=-app>
     <h2>회원가입껍데기</h2>
     <signup-form-vue></signup-form-vue>
-  </v-app>
+  </div>
 </template>
 
 <script>

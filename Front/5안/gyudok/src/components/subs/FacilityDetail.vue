@@ -1,38 +1,37 @@
 <template>
   <div>
-    <h1>운동시설 상세 조회</h1>
     <div>
-      <facility-map></facility-map>
-    </div>
-    <div>
-      <tr>
-        <td><label for="address1">지역구분</label></td>
-        <td><label for="factype">시설유형</label></td>
-        <td><label for="facname">시설명</label></td>
-        <td><label for="rating">평점</label></td>
-        <td><label for="fulladdress2">주소</label></td>
-      </tr>
-      <tr>
-        <td>
-          <div>{{ facility.address1 }}</div>
-        </td>
-        <td>
-          <div>{{ facility.factype }}</div>
-        </td>
-        <td>
-          <div>{{ facility.facname }}</div>
-        </td>
-        <td>
-          <div>{{ facility.rating }}점</div>
-        </td>
-        <td>
-          <div>{{ facility.fulladdress2 }}</div>
-        </td>
-      </tr>
+      <span>운동시설 상세 조회</span>
+      <button @click="UseFac">이용하기</button>
+      <br />
+      <div>
+        <tr>
+          <th><label for="address1">지역구분</label></th>
+          <th><label for="factype">시설유형</label></th>
+          <th><label for="facname">시설명</label></th>
+          <th><label for="fulladdress2">주소</label></th>
+        </tr>
+        <tr>
+          <td>
+            {{ facility.address1 }}
+          </td>
+          <td>
+            {{ facility.factype }}
+          </td>
+          <td>
+            {{ facility.facname }}
+          </td>
+          <td>
+            {{ facility.fulladdress2 }}
+          </td>
+        </tr>
+      </div>
+      <div>
+        <facility-map></facility-map>
+      </div>
       <div>
         <router-link :to="{ name: 'fac-searchresult' }">목록으로</router-link>
       </div>
-      <button @click="UseFac">이용하기 버튼</button>
     </div>
   </div>
 </template>
@@ -47,10 +46,10 @@ export default {
   components: {
     FacilityMap,
   },
-  data(){
-    return{
-      facility:"",
-    }
+  data() {
+    return {
+      facility: "",
+    };
   },
   // computed: {
   //   ...mapGetters(["facility"]),
@@ -73,20 +72,26 @@ export default {
   created() {
     //this.$store.dispatch("getFacility", this.$route.query.id);
     const API_URL = `http://localhost:9999/gyudok-subs/facility/${this.$route.query.id}`;
-      axios({
-        url: API_URL,
-        method: "GET",
+    axios({
+      url: API_URL,
+      method: "GET",
+    })
+      .then((res) => {
+        //console.log(res.data);
+        this.facility = res.data;
       })
-        .then((res) => {
-         //console.log(res.data);
-          this.facility = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .catch((err) => {
+        console.log(err);
+      });
   },
-  
 };
 </script>
 
-<style></style>
+<style>
+th {
+  text-align: center;
+}
+td {
+  text-align: center;
+}
+</style>

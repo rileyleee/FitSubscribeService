@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <h1>이용한 운동 시설 목록</h1>
 
     <div v-if="usefacilities.length">
@@ -40,7 +40,7 @@
         </tbody>
       </table>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>

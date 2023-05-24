@@ -1,12 +1,11 @@
 <template>
-  <v-app>
+  <div id="app">
     <h2>커뮤니티껍데기</h2>
     <router-view></router-view>
-  </v-app>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "App",
 };
 </script>

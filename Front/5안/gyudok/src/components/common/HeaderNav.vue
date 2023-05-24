@@ -9,11 +9,12 @@
       <div>
         <router-link :to="{ name: 'fac-search' }"> 운동시설 구독 </router-link>
         <router-link :to="{ name: 'boardList' }">커뮤니티</router-link>
+        <a href="#">이벤트</a>
       </div>
       <div>
         <a href="#" v-if="getUser" @click="logout">로그아웃 </a>
         <router-link :to="{ name: 'login' }" v-else>로그인 </router-link>
-        <router-link :to="{ name: 'signup' }">회원 가입 </router-link>
+        <router-link :to="{ name: 'signup' }">회원가입 </router-link>
       </div>
     </nav>
   </header>
@@ -42,7 +43,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @font-face {
   font-family: "jua";
   src: url("@/assets/fonts/BMJUA_ttf.ttf");
