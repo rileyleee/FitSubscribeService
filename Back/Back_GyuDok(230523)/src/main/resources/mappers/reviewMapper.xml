@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bodyguard.gyudok.model.dao.ReviewDao">
+
+	<!-- 댓글 등록 -->
+	<insert id="insertOne" parameterType="Review">
+		INSERT INTO REVIEW(id,
+		user_id, board_id, content)
+		VALUES(#{id},#{user_id},#{board_id},#{content});
+	</insert>
+
+	<!-- 댓글 상세 조회 -->
+	<select id="selectOne" parameterType="int" resultType="Review">
+		SELECT *
+		FROM
+		REVIEW
+		WHERE id = #{id};
+	</select>
+
+	<!-- 댓글 수정 -->
+	<update id="updateOne" parameterType="Review">
+		UPDATE REVIEW
+		SET
+		content =
+		#{content}
+		WHERE id = #{id};
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM REVIEW
+		WHERE id
+		=
+		#{id}
+	</delete>
+
+	<!-- 작성자별 게시글 조회 -->
+	<select id="selectUserReviews" parameterType="String"
+		resultType="Review">
+		SELECT * FROM REVIEW
+		WHERE user_id = #{user_id};
+	</select>
+
+	<!-- 게시글의 모든 댓글 조회 -->
+	<select id="selectBoardReviews" parameterType="int"
+		resultType="Review">
+		SELECT * FROM REVIEW
+		WHERE board_id = #{board_id};
+	</select>
+
+</mapper>

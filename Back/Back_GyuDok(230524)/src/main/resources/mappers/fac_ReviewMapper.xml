@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bodyguard.gyudok.model.dao.Fac_ReviewDao">
+
+
+	<!-- 운동시설 리뷰 및 평점 기록하기 -->
+	<insert id="insertFacReview" parameterType="Fac_Review">
+		INSERT INTO
+		FAC_REVIEW
+		VALUES(#{id},#{user_id},#{fac_id},#{title},#{content},
+		#{rating})
+	</insert>
+
+	<!-- 내가 작성한 운동시설 리뷰 모두 조회하기 -->
+	<select id="selectUserFacReviews" parameterType="String"
+		resultType="Fac_Review">
+		SELECT * FROM
+		FAC_REVIEW
+		WHERE user_id =#{user_id};
+	</select>
+
+	<!-- 특정 운동시설의 리뷰 조회하기 -->
+	<select id="selectFacReviews" parameterType="int"
+		resultType="Fac_Review">
+		SELECT * FROM
+		FAC_REVIEW
+		WHERE fac_id =#{fac_id};
+	</select>
+
+	<!-- 내가 작성한 리뷰 삭제하기 -->
+	<delete id="deleteUserFacReviews">
+		DELETE FROM
+		FAC_REVIEW
+		WHERE user_id = #{user_id} AND
+		fac_id =#{fac_id}
+	</delete>
+</mapper>

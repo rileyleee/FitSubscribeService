@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bodyguard.gyudok.model.dao.Fac_SubsDao">
+
+
+	<!-- 운동 시설 구독 신청 -->
+	<insert id="insertFacSubs" parameterType="Fit_Subs">
+		INSERT INTO
+		FIT_SUBS(user_id, months, startdate, enddate)
+		VALUES(#{user_id},#{months}, #{startdate},#{enddate})
+	</insert>
+
+	<!-- 운동 시설 구독 현황 조회하기 -->
+	<select id="selectFacSubs" parameterType="String"
+		resultType="Fit_Subs">
+		SELECT * FROM
+		FIT_SUBS
+		WHERE DATE(enddate)<![CDATA[>]]>DATE(NOW())
+	</select>
+
+	<!-- 운동 시설 현재+과거 구독 내역 조회하기 -->
+	<select id="selectFacSubHistory" parameterType="String"
+		resultType="Fit_Subs">
+		SELECT * FROM
+		FIT_SUBS
+	</select>
+
+	<!-- 운동 시설 검색 기능 -->
+	<select id="selectFacs" parameterType="String"
+		resultType="Facility">
+		SELECT * FROM
+		FACILITY
+		WHERE address1 LIKE concat ('%',
+		#{keyword}, '%') OR
+		address2 LIKE concat ('%', #{keyword}, '%') OR
+		facname LIKE concat ('%', #{keyword}, '%') OR
+		factype LIKE concat ('%',
+		#{keyword}, '%')
+	</select>
+
+	<!-- 운동 시설 상세 조회 -->
+	<select id="selectFac" parameterType="int" resultType="Facility">
+		SELECT *
+		FROM
+		FACILITY
+		WHERE id = #{id};
+	</select>
+
+	<!-- 운동 시설 이용하기 -->
+	<insert id="insertUseFac" parameterType="Fac_Use">
+		INSERT INTO F_USE
+		VALUES(#{user_id},#{fac_id})
+	</insert>
+
+	<!-- 운동 시설 이용 내역 조회하기 -->
+	<select id="selectFacUseHistory" parameterType="String"
+		resultType="Facility">
+		SELECT * FROM FACILITY
+		INNER JOIN F_USE
+		ON FACILITY.id =
+		F_USE.fac_id
+		WHERE F_USE.user_id = #{user_id}
+	</select>
+
+	<!-- 운동 시설 찜하기 -->
+	<insert id="insertFacZzim" parameterType="Fac_Zzim">
+		INSERT INTO F_ZZIM
+		VALUES(#{user_id},#{fac_id})
+	</insert>
+
+	<!-- 운동 시설 찜 삭제하기 -->
+	<delete id="deleteFacZzim" parameterType="Fac_Zzim">
+		DELETE FROM F_ZZIM
+		WHERE user_id = #{user_id} and
+		fac_id = #{fac_id}
+	</delete>
+
+	<!-- 운동 시설 찜 목록 조회하기 -->
+	<select id="selectFacZzims" parameterType="String"
+		resultType="Facility">
+		SELECT * FROM FACILITY
+		INNER JOIN F_ZZIM
+		ON FACILITY.id =
+		F_ZZIM.fac_id
+		WHERE F_ZZIM.user_id = #{user_id}
+	</select>
+
+</mapper>
