@@ -98,7 +98,7 @@ public class BoardRestController {
 			return new ResponseEntity<String>("delete_failed", HttpStatus.UNAUTHORIZED);
 		} else {
 			// 유저 온도 점수 감소 0.5점
-			userService.removeBoardTemp(user_id);
+			//userService.removeBoardTemp(user_id);
 			return new ResponseEntity<Integer>(result, HttpStatus.OK);
 		}
 	}
