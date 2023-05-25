@@ -79,7 +79,7 @@ export default {
 
             // 인포윈도우로 장소에 대한 설명을 표시합니다
             var infowindow = new window.kakao.maps.InfoWindow({
-              content: `<div id="infowindow">${facName}</div>`,
+              content: `<div style="width:250px;text-align:center;padding:6px 0;">${facName}</div>`,
             });
             infowindow.open(this.map, marker);
 
@@ -94,12 +94,6 @@ export default {
 </script>
 
 <style scoped>
-#infowindow {
-  text-align: center;
-  width: 200px;
-  height: 100px;
-  padding: 6px 0;
-}
 #map {
   width: 100%;
   height: 700px;
