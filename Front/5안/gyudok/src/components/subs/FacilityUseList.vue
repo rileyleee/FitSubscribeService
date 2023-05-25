@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>이용한 운동 시설 목록</h1>
     <div style="float: right">
       <router-link style="font-size: 0.7em" :to="{ name: 'fac-search' }"
@@ -69,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  height: 1200px;
+}
 th {
   font-size: 0.6em;
   vertical-align: middle;

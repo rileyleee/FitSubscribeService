@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>나의 구독 내역</h1>
+  <div class="container" style="padding-top: 20px">
+    <h1 style="text-align: center">나의 구독 내역</h1>
 
     <div v-if="subscriptions.length">
       <b-table-simple hover>
@@ -56,6 +56,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  height: 1200px;
+}
 th {
   font-size: 0.6em;
   vertical-align: middle;

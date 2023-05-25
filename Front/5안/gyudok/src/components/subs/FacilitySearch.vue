@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <div class="row">
         <div class="col-3">
@@ -23,9 +23,6 @@
               >
             </template>
           </b-card>
-          <div style="text-align: center; padding-top: 20px">
-            <h2>광고 들어갈 자리</h2>
-          </div>
         </div>
         <div class="col-9">
           <h2>운동시설 검색하기</h2>
@@ -83,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  height: 1200px;
+}
 .searchtxtsize {
   font-size: 0.4em;
 }
@@ -90,20 +90,20 @@ export default {
   font-size: 0.1em;
 }
 .txtsize {
-  font-size: 0.25em;
+  font-size: 0.24em;
 }
 input {
-  width: 715px;
+  width: 700px;
   height: 50px;
   border-radius: 5px;
 }
 button {
-  width: 100px;
+  width: 90px;
   height: 53px;
   border: none;
   background-color: #2b57a1;
   color: white;
-  margin-left: 8px;
+  margin-left: 10px;
   border-radius: 5px;
 }
 </style>

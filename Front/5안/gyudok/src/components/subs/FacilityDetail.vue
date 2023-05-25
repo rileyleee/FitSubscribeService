@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <br />
       <h2>운동시설 상세 조회</h2>
@@ -94,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  height: 1200px;
+}
 span {
   font-size: 0.5em;
 }

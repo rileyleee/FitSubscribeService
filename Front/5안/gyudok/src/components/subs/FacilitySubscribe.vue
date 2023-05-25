@@ -2,14 +2,16 @@
   <div>
     <h2>운동시설 구독권 FIT PASS 신청하기</h2>
     <div>
-      {{ months }}개월 동안 운동시설을 구독하겠습니다.
       <b-form-select v-model="months" @change="subscribe()">
         <option v-for="month in monthList" :key="month.id" :value="month.value">
           {{ month.value }}개월 구독
         </option>
       </b-form-select>
     </div>
-    <br/>
+    <div class="confirm">
+    {{ months }}개월 동안 운동시설을 구독하겠습니다.
+    </div>
+    <br />
     <MyFacSubscribe></MyFacSubscribe>
   </div>
 </template>
@@ -62,4 +64,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.confirm{
+  font-size: 0.8em
+}
+</style>

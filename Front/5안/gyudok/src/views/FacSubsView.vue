@@ -1,9 +1,11 @@
 <template>
-<b-container fluid="xl">
-    <h2>Work Out Whenever Wherever You are</h2>
-    <br />
-    <router-view />
-</b-container>
+  <div>
+    <h2>운동구독</h2>
+    <b-container fluid="xl">
+      <br />
+      <router-view />
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -12,4 +14,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+h2{
+margin-left: 180px
+}</style>

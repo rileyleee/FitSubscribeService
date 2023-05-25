@@ -1,14 +1,22 @@
 <template>
-  <div class="container">
-    <footer>
-      <div style="text-align: left"><h2>푸터 여기 있어요</h2></div>
-    </footer>
+  <div class="footer">
+    <hr />
+    <span style="font-size: 0.8em; text-align: left">
+      9th SSAFY GYUHO and EUN</span
+    >
+    <!-- <h1>Footer</h1> -->
+    <hr />
   </div>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style>
+<style scoped>
+.footer {
+  text-align: center;
+  background-color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+}
 </style>
