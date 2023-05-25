@@ -4,13 +4,6 @@
 
     <div v-if="facilities.length">
       <table>
-        <!-- <colgroup>
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup> -->
         <thead>
           <tr>
             <th> 번호 </th>
@@ -53,7 +46,7 @@ export default {
     ...mapGetters(["facilities"]),
     filteredFacilities() {
       // 필터링된 배열을 반환하는 계산된 속성
-      return this.facilities.slice(0, 20); // 원하는 반복 횟수로 배열을 자르기
+      return this.facilities.slice(0, 15); // 원하는 반복 횟수로 배열을 자르기
     },
   },
   // 여기서 컴포넌트를 생성하자마자 검색하려 하니 keyword 없는 검색이 되어 undefined 출력 오류
@@ -63,4 +56,90 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.fulladdtd{
+  text-align: left;
+}
+body {
+  padding:1.5em;
+  background: #f5f5f5
+}
+
+table {
+  border: 1px #a39485 solid;
+  font-size: .2em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: center;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #2b57a1;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+  text-align: center;
+}
+
+a {
+  color: #73685d;
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  }</style>

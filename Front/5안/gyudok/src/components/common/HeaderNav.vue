@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @font-face {
   font-family: "jua";
   src: url("@/assets/fonts/BMJUA_ttf.ttf");

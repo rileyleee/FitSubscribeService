@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div>
       <div class="row">
         <div class="col-3">
           <b-card
@@ -9,20 +9,25 @@
             img-alt="Image"
             img-top
           >
-            <b-card-text>
+            <b-card-text class="txtsize">
               여행을 떠난 바로 그 곳에서! 업무상 출장을 간 그 곳에서!
             </b-card-text>
-            <b-card-text>
-              언제 어디서든 건강하고 싶은 당신을 위한 맞춤형 구독상품
+            <b-card-text class="txtsize">
+              언제 어디서든 건강하고 싶은 당신을 위한 구독 상품
             </b-card-text>
             <template #footer>
-              <b-card-text
+              <b-card-text class="txtsize" style="text-align: center"
                 ><router-link :to="{ name: 'fac-subscribe' }"
                   >운동시설 구독권 신청하기</router-link
                 ></b-card-text
               >
             </template>
           </b-card>
+          <div style="text-align: center">
+            <router-link style="font-size: 0.3em" :to="{ name: 'fac-use' }"
+              >이용한 운동시설 목록</router-link
+            >
+          </div>
         </div>
         <div class="col-9">
           <h2>운동시설 검색하기</h2>
@@ -32,23 +37,21 @@
           <!--체력단련장(필라테스, 피트니스),태권도,인공암벽장,골프(장),합기도, 테니스(장),배드민턴,권투,농구,축구,유도,수영장-->
           <fieldset>
             <input
+              class="searchtxtsize"
               type="text"
               id="keyword"
               v-model="keyword"
-              placeholder="운동 종류 및 지역명을 입력해주세요"
+              placeholder=" 운동 종류 및 지역명을 입력해주세요"
               @keyup.enter="searchFacs"
             />
-            <button variant="primary" @click="searchFacs">검 색</button>
-            <br />
-            <div></div>
-            <br />
-            <FacilitySearchResult :keyword="keyword"></FacilitySearchResult>
+            <button class="searchtxtsize" variant="primary" @click="searchFacs">
+              검 색
+            </button>
           </fieldset>
+          <div style="padding-top: 15px"></div>
+          <FacilitySearchResult :keyword="keyword"></FacilitySearchResult>
         </div>
       </div>
-    </div>
-    <div>
-      <router-link :to="{ name: 'fac-use' }">이용한 운동시설 목록</router-link>
     </div>
   </div>
 </template>
@@ -82,8 +85,17 @@ export default {
 </script>
 
 <style scoped>
+.searchtxtsize {
+  font-size: 0.4em;
+}
+.txtsize0 {
+  font-size: 0.1em;
+}
+.txtsize {
+  font-size: 0.2em;
+}
 input {
-  width: 500px;
+  width: 690px;
   height: 50px;
   border-radius: 5px;
 }
@@ -91,9 +103,9 @@ button {
   width: 100px;
   height: 53px;
   border: none;
-  background-color: rgb(97, 145, 222);
+  background-color: #2b57a1;
   color: white;
-  margin-left: 5px;
+  margin-left: 10px;
   border-radius: 5px;
 }
 </style>

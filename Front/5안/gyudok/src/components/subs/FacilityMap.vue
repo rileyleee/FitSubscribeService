@@ -1,6 +1,6 @@
 <template>
-  <div style="padding-top:20px">
-    <h4>운동시설 위치 보기</h4>
+  <div style="padding-top: 10px">
+    <h2>운동시설 위치 보기</h2>
     <div id="map"></div>
   </div>
 </template>
@@ -48,11 +48,10 @@ export default {
     },
 
     loadMap() {
-      //console.log(this.facility);
+
       var facAddress = this.facility.fulladdress2;
       var facName = this.facility.facname;
-      // console.log(facAddress);
-      // console.log(facName);
+
       const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
       var options = {
         //지도를 생성할 때 필요한 기본 옵션 -> 첫 위치는 관계 없음
@@ -80,7 +79,7 @@ export default {
 
             // 인포윈도우로 장소에 대한 설명을 표시합니다
             var infowindow = new window.kakao.maps.InfoWindow({
-              content: `<div style="width:150px;text-align:center;padding:6px 0;">${facName}</div>`,
+              content: `<div id="infowindow">${facName}</div>`,
             });
             infowindow.open(this.map, marker);
 
@@ -95,9 +94,17 @@ export default {
 </script>
 
 <style scoped>
+#infowindow {
+  text-align: center;
+  width: 200px;
+  height: 100px;
+  padding: 6px 0;
+}
 #map {
-  width: 200%;
+  width: 100%;
   height: 700px;
-
+  font-size: 0.15em;
+  border-radius: 20px;
+  border: 2px;
 }
 </style>
