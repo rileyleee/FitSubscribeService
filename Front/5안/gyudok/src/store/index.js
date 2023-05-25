@@ -237,7 +237,7 @@ export default new Vuex.Store({
         .then(() => {
           commit("USE_THISFAC", fac_use);
           alert("예약되었습니다 (전.이용하기)");
-          router.push("/facsubs/result"); //시설 이용내역으로 가면 좋겠다.
+          router.push("/facsubs/use"); //시설 이용내역으로 가기
         })
         .catch((err) => {
           console.log(err);

@@ -1,17 +1,18 @@
 <template>
-  <div id=app>
     <div>
       <header-nav></header-nav>
       <router-view />
+      <FooterPart></FooterPart>
     </div>
-  </div>
 </template>
 
 <script>
+import FooterPart from "./components/common/FooterPart.vue";
 import HeaderNav from "./components/common/HeaderNav.vue";
+
 export default {
   name: "App",
-  components: { HeaderNav },
+  components: { HeaderNav, FooterPart },
 
   data: () => ({}),
 };

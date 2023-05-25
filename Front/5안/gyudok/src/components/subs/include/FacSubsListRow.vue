@@ -25,4 +25,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+td {
+  font-size: 0.5em;
+  vertical-align: middle;
+}
+</style>

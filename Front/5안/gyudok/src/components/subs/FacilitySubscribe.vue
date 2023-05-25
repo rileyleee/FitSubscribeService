@@ -1,14 +1,15 @@
 <template>
   <div>
-    <h2>운동시설 구독권 신청하기</h2>
-    <span>
-      {{ months }}월 동안 운동시설을 구독하겠습니다.
-      <select v-model="months" @change="subscribe()">
+    <h2>운동시설 구독권 FIT PASS 신청하기</h2>
+    <div>
+      {{ months }}개월 동안 운동시설을 구독하겠습니다.
+      <b-form-select v-model="months" @change="subscribe()">
         <option v-for="month in monthList" :key="month.id" :value="month.value">
           {{ month.value }}개월 구독
         </option>
-      </select>
-    </span>
+      </b-form-select>
+    </div>
+    <br/>
     <MyFacSubscribe></MyFacSubscribe>
   </div>
 </template>
@@ -47,14 +48,18 @@ export default {
   },
   methods: {
     subscribe() {
-      let fit_sub = {
-        user_id: this.$store.state.loginUser.id,
-        months: this.months,
-      };
-      this.$store.dispatch("setSubscription", fit_sub);
+      if (localStorage.getItem("loginUser") === null) {
+        alert("로그인 시 운동시설 구독권 FIT PASS 신청이 가능합니다.");
+        this.$router.push("/");
+      } else {
+        let fit_sub = {
+          user_id: this.$store.state.loginUser.id,
+          months: this.months,
+        };
+        this.$store.dispatch("setSubscription", fit_sub);
+      }
     },
   },
 };
 </script>
-
 <style></style>

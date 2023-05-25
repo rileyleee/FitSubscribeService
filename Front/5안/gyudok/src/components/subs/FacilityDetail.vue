@@ -22,9 +22,7 @@
             </td>
             <td>
               {{ facility.facname }}
-              <button @click="UseFac" id="usebtn">
-                이용하기
-              </button>
+              <button @click="UseFac" id="usebtn">이용하기</button>
             </td>
             <td>
               {{ facility.fulladdress2 }}
@@ -32,9 +30,9 @@
           </tr>
         </tbody>
       </table>
-      <div style="float:right">
-        <router-link style="font-size: 0.7em" :to="{ name: 'fac-searchresult' }"
-          >목록으로</router-link
+      <div style="float: right">
+        <router-link style="font-size: 0.7em" :to="{ name: 'fac-search' }"
+          >검색결과 목록으로</router-link
         >
       </div>
       <div>
@@ -65,17 +63,16 @@ export default {
   // },
   methods: {
     async UseFac() {
-      let fac_use = {
-        user_id: this.$store.state.loginUser.id,
-        fac_id: this.$route.query.id,
-      };
-      this.$store.dispatch("useThisFac", fac_use);
-      //this.$router.push("{ name: 'fac-use' }");
-      // 나중에 운동시설 이용내역화면으로 보내주기
-      // this.$router.push({
-      //   name: "movie-detail",
-      //   query: { id: this.$route.query.id },
-      //});
+      if (localStorage.getItem("loginUser") === null) {
+        alert("로그인 시 운동시설 예약이 가능합니다. 로그인 화면으로 이동합니다.");
+        this.$router.push("/");
+      } else {
+        let fac_use = {
+          user_id: this.$store.state.loginUser.id,
+          fac_id: this.$route.query.id,
+        };
+        this.$store.dispatch("useThisFac", fac_use);
+      }
     },
   },
   created() {

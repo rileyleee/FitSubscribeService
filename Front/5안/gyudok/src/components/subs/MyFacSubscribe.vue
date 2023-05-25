@@ -3,24 +3,17 @@
     <h1>나의 구독 내역</h1>
 
     <div v-if="subscriptions.length">
-      <table>
-        <colgroup>
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>구독 신청일</th>
-            <th>구독기간</th>
-            <th>구독 시작일</th>
-            <th>구독 종료일</th>
-          </tr>
-        </thead>
-        <tbody>
+      <b-table-simple hover>
+        <b-thead class="text-center">
+          <b-tr>
+            <b-th>번호</b-th>
+            <b-th>구독 신청일</b-th>
+            <b-th>구독기간</b-th>
+            <b-th>구독 시작일</b-th>
+            <b-th>구독 종료일</b-th>
+          </b-tr>
+        </b-thead>
+        <b-tbody class="text-center">
           <FacSubsListRow
             v-for="(subscription, index) in subscriptions"
             :key="index"
@@ -31,8 +24,8 @@
             :enddate="subscription.enddate.map(String).join('.')"
           >
           </FacSubsListRow>
-        </tbody>
-      </table>
+        </b-tbody>
+      </b-table-simple>
     </div>
   </div>
 </template>
@@ -62,4 +55,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+th {
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+</style>

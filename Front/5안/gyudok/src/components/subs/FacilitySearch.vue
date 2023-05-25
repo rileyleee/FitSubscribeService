@@ -5,7 +5,7 @@
         <div class="col-3">
           <b-card
             title="FIT PASS"
-            img-src="https://picsum.photos/300/300/?image=41"
+            img-src="https://i.pinimg.com/474x/0a/39/75/0a3975ed1be8d2d184c86f2ded92aa5f.jpg"
             img-alt="Image"
             img-top
           >
@@ -13,20 +13,18 @@
               여행을 떠난 바로 그 곳에서! 업무상 출장을 간 그 곳에서!
             </b-card-text>
             <b-card-text class="txtsize">
-              언제 어디서든 건강하고 싶은 당신을 위한 구독 상품
+              언제든 어디서든 운동하는 당신을 위한 구독 상품
             </b-card-text>
             <template #footer>
               <b-card-text class="txtsize" style="text-align: center"
                 ><router-link :to="{ name: 'fac-subscribe' }"
-                  >운동시설 구독권 신청하기</router-link
+                  >운동시설 구독 <br/>"FIT PASS" 신청</router-link
                 ></b-card-text
               >
             </template>
           </b-card>
-          <div style="text-align: center">
-            <router-link style="font-size: 0.3em" :to="{ name: 'fac-use' }"
-              >이용한 운동시설 목록</router-link
-            >
+          <div style="text-align: center; padding-top: 20px">
+            <h2>광고 들어갈 자리</h2>
           </div>
         </div>
         <div class="col-9">
@@ -92,10 +90,10 @@ export default {
   font-size: 0.1em;
 }
 .txtsize {
-  font-size: 0.2em;
+  font-size: 0.25em;
 }
 input {
-  width: 690px;
+  width: 715px;
   height: 50px;
   border-radius: 5px;
 }
@@ -105,7 +103,7 @@ button {
   border: none;
   background-color: #2b57a1;
   color: white;
-  margin-left: 10px;
+  margin-left: 8px;
   border-radius: 5px;
 }
 </style>
