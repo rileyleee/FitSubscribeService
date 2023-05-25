@@ -1,20 +1,93 @@
 <template>
   <!-- 사실 카테고리는 id에 따라서 다르게 창 보이게 설정 -->
   <div>
-    <h1>글쓰기</h1>
-    <div>
-      <label for="title"> 제목</label>
-      <input type="text" id="title" name="title" v-model="title" />
-      <label for="category"> 카테고리</label>
-      <input type="text" id="category" name="category" v-model="category" />
-      <label for="content">내용</label>
-      <input type="text" id="content" name="content" v-model="content" />
-      <input type="file" accept="video/*" @change="handleFileChange" />
+    <h3 class="center-align" v-if="type == 'create'">글을 작성해 주세요</h3>
+    <h3 class="center-align" v-if="type == 'modify'">글을 수정해 주세요</h3>
+    <div class="container">
+      <div>
+        <div class="content">
+          <label for="title"> 제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            v-model="title"
+            class="form-control"
+            :readonly="type == 'modify'"
+          />
 
-      <button v-if="type === 'create'" @click="registBoard">등록</button>
-      <button v-if="type === 'modify'" @click="modifyBoard">수정</button>
-      <button @click="removeBoard">삭제</button>
-      <button @click="moveCommunityList">목록</button>
+          <!-- <label for="category"> 카테고리</label>
+          <input
+            type="text"
+            id="category"
+            name="category"
+            v-model="category"
+            class="form-control"
+            :readonly="type == 'modify'"
+          /> -->
+          <label for="category"> 카테고리</label>
+          <b-form-select
+            v-model="category"
+            id="category"
+            name="category"
+            :readonly="type == 'modify'"
+          >
+            <option
+              v-for="category in categoryList"
+              :key="category.id"
+              :value="category.value"
+            >{{ category.value }}</option>
+          </b-form-select>
+
+          <label for="content" form-label>내용</label>
+          <textarea
+            type="text"
+            id="content"
+            name="content"
+            v-model="content"
+            class="form-control"
+            rows="3"
+          />
+
+          <input
+            type="file"
+            accept="video/*"
+            @change="handleFileChange"
+            class="file"
+          />
+        </div>
+
+        <div class="button">
+          <b-button
+            class="buttonson"
+            variant="outline-primary"
+            style="background-color = white"
+            v-if="type === 'create'"
+            @click="registBoard"
+            >등록</b-button
+          >
+          <b-button
+            class="buttonson"
+            variant="outline-warning"
+            v-if="type === 'modify'"
+            @click="modifyBoard"
+            >수정</b-button
+          >
+          <b-button
+            class="buttonson"
+            variant="outline-danger"
+            @click="removeBoard"
+            >삭제</b-button
+          >
+
+          <b-button
+            class="buttonson"
+            variant="outline-secondary"
+            @click="moveCommunityList"
+            >목록</b-button
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +106,29 @@ export default {
       category: "",
       content: "",
       file: null,
+
+      categoryList: [
+        {
+          id: 1,
+          value: "운동",
+        },
+        {
+          id: 2,
+          value: "식단",
+        },
+        {
+          id: 3,
+          value: "시설",
+        },
+        {
+          id: 4,
+          value: "강의",
+        },
+        {
+          id: 5,
+          value: "기타",
+        },
+      ],
     };
   },
   created() {
@@ -76,8 +172,12 @@ export default {
       }
     },
     async modifyBoard() {
-      const storedUser = localStorage.getItem("loginUser");
-      const user = JSON.parse(storedUser);
+      // const storedUser = localStorage.getItem("loginUser");
+      const storeUser = localStorage.getItem("loginUser");
+      // console.log(storeUser);
+
+      const user = JSON.parse(storeUser);
+      console.log(user.id);
       const board = {
         user_id: user.id,
         id: this.$route.query.id,
@@ -93,8 +193,9 @@ export default {
     async removeBoard() {
       let id = this.$route.query.id;
       //   console.log(id);
+
       await this.$store.dispatch("deleteBoard", id);
-      this.$router.push({ name: "boardList" });
+      //   this.$router.push({ name: "boardList" });
     },
   },
   computed: {
@@ -103,4 +204,70 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.center-align {
+  text-align: center;
+}
+.container {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  /* transform: translate(-50%, -50%); */
+  background: white;
+  border-radius: 10px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+.write {
+  margin-top: 30px;
+}
+/* .container h3 {
+  margin: 0 0 30px;
+  padding: 0;
+} */
+.btn-secondary {
+  background-color: white;
+}
+.form-control {
+  margin-bottom: 30px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.button {
+  display: flex;
+  /* justify-content: end; */
+  margin-bottom: 30px;
+  /* margin-right: 10px; */
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.buttonson {
+  margin-right: 10px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: "jua";
+  src: url("@/assets/fonts/BMJUA_ttf.ttf");
+}
+div {
+  font-family: "jua";
+  font-size: medium;
+}
+header {
+  height: 70px;
+  background-color: white;
+  line-height: 70px;
+  padding: 0px 30px;
+}
+header a {
+  margin: 10px;
+  text-decoration: none;
+  color: rgb(12, 12, 12);
+}
+</style>

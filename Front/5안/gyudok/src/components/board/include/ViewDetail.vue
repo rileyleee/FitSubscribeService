@@ -1,12 +1,8 @@
 <template>
-
   <div>
-    <h1>글 정보</h1>
+    <h2 class="align-center">글 정보</h2>
     <div>
-      <video :src="getFilePath(this.mymymy.fileName)"
-        ref="videoPlayer"
-        controls muted @click="playVideo"
-      ></video>
+      <!-- <video :src="getFilePath(board.fileName)" controls></video> -->
       <table>
         <tr>
           <td><label for="category"> 카테고리</label></td>
@@ -18,19 +14,19 @@
 
         <tr>
           <td>
-            <div>{{ mymymy.category }}</div>
+            <div>{{ board.category }}</div>
           </td>
           <td>
-            <div>{{ mymymy.title }}</div>
+            <div>{{ board.title }}</div>
           </td>
           <td>
-            <div>{{ mymymy.content }}</div>
+            <div>{{ board.content }}</div>
           </td>
           <td>
-            <div>{{ mymymy.viewcnt }}</div>
+            <div>{{ board.viewcnt }}</div>
           </td>
           <td>
-            <div>{{ mymymy.regdate }}</div>
+            <div>{{ board.regdate }}</div>
           </td>
         </tr>
       </table>
@@ -41,52 +37,79 @@
         :to="{ name: 'boardModify', query: { id: this.$route.query.id } }"
         >글 수정</router-link
       >
+      <!-- <button @click="likeUpdate">좋아요 버튼</button> -->
     </div>
   </div>
+  <!-- 여기 밑부분 수정 -->
 </template>
 
 <script>
-import axios from 'axios';
-
+import { mapState } from "vuex";
+// import { mapState } from "vuex";
 export default {
   name: "ViewDetail",
-  data(){
-    return{
-      mymymy:{},
-    }
-  },
-  created(){
-    console.log(this.$route.query.id);
-    const API_URL = `http://localhost:9999/gyudok-board/board/${this.$route.query.id}`;
-      axios({
-        url: API_URL,
-        method: "GET",
-      })
-        .then((res) => {
-          console.log(res.data);
-          this.mymymy = res.data;
-          console.log(this.mymymy.fileName);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  computed: {
+    ...mapState(["board"]),
+    // ...mapState(["board.likeCnt"]),
   },
   methods: {
-    getFilePath(fileName) {
-      console.log("getfile")      
-      const videoPath = `../assets/upload/${fileName}`; // 동영상 파일이 위치한 경로를 지정합니다.
-      console.log(videoPath);
-      return videoPath;
-    },
-
-   playVideo() {
-      const videoPlayer = this.$refs.videoPlayer;
-      if (videoPlayer.paused) {
-        videoPlayer.play();
-      }
-    },
+    // getFilePath(file) {
+    //   const videoPath = `asset/upload/${board.fileName}`; // 동영상 파일이 위치한 경로를 지정합니다.
+    //   return videoPath;
+    // },
+    // async likeUpdate() {
+    //   await this.$store.dispatch("updateLikeCnt", this.movie.id);
+    //   this.$router.push({
+    //     name: "movie-detail",
+    //     query: { id: this.$route.query.id },
+    //   });
+    // },
   },
 };
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: "jua";
+  src: url("@/assets/fonts/BMJUA_ttf.ttf");
+}
+div {
+  font-family: "jua";
+  font-size: large;
+}
+header {
+  height: 70px;
+  background-color: white;
+  line-height: 70px;
+  padding: 0px 30px;
+}
+header a {
+  margin: 10px;
+  text-decoration: none;
+  color: rgb(12, 12, 12);
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container button {
+  margin-right: 10px;
+}
+
+.header-mi .logo {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+.home {
+  width: 170px;
+  height: 65px;
+}
+.align-center {
+  text-align: center;
+}
+</style>

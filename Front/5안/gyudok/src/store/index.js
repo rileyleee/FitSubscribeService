@@ -45,11 +45,14 @@ export default new Vuex.Store({
     },
     DO_LOGIN(state, user) {
       state.loginUser = user;
+      user.password = "";
       localStorage.setItem("loginUser", JSON.stringify(user));
     },
     LOGOUT: function (state) {
       state.loginUser = null;
       localStorage.removeItem("loginUser");
+      alert("로그아웃하였습니다.");
+      router.push("/login");
     },
     GET_BOARD(state, board) {
       // console.log(board);
@@ -96,7 +99,7 @@ export default new Vuex.Store({
         .then(() => {
           commit("DO_REGIST", user);
           alert("등록되었습니다.");
-          router.push("/");
+          router.push("/login");
         })
         .catch((err) => {
           alert("다시 작성해주세요.");
@@ -116,7 +119,7 @@ export default new Vuex.Store({
           router.push("/");
         })
         .catch((err) => {
-          alert("비밀번호를 다시 입력해주세요.");
+          alert("아이디 또는 비밀번호를 다시 입력해주세요.");
           console.log(err);
         });
     },
@@ -132,7 +135,7 @@ export default new Vuex.Store({
         params,
       })
         .then((res) => {
-          // console.log(res);
+          console.log(res);
           commit("GET_BOARDS", res.data);
         })
         .catch((err) => {
