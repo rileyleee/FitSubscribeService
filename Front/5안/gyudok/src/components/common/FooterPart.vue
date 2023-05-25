@@ -2,8 +2,7 @@
   <div class="footer">
     <hr />
     <span style="font-size: 0.8em; text-align: left">
-      9th SSAFY GYUHO and EUN</span
-    >
+      9th SSAFY GYUHO and EUN</span>
     <!-- <h1>Footer</h1> -->
     <hr />
   </div>

@@ -16,5 +16,5 @@ export default {
 
 <style scoped>
 h2{
-margin-left: 180px
+margin-left: 175px
 }</style>

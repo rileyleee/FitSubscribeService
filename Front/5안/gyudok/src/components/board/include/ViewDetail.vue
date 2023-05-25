@@ -3,7 +3,7 @@
   <div>
     <h1>글 정보</h1>
     <div>
-      <video :src="getFilePath(mymymy.fileName)"
+      <video :src="getFilePath(this.mymymy.fileName)"
         ref="videoPlayer"
         controls muted @click="playVideo"
       ></video>
@@ -41,10 +41,8 @@
         :to="{ name: 'boardModify', query: { id: this.$route.query.id } }"
         >글 수정</router-link
       >
-      <!-- <button @click="likeUpdate">좋아요 버튼</button> -->
     </div>
   </div>
-  <!-- 여기 밑부분 수정 -->
 </template>
 
 <script>
@@ -67,6 +65,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.mymymy = res.data;
+          console.log(this.mymymy.fileName);
         })
         .catch((err) => {
           console.log(err);
@@ -74,11 +73,10 @@ export default {
   },
   methods: {
     getFilePath(fileName) {
-      console.log("getfile")
+      console.log("getfile")      
       const videoPath = `../assets/upload/${fileName}`; // 동영상 파일이 위치한 경로를 지정합니다.
-
+      console.log(videoPath);
       return videoPath;
-      // @/assets/upload/20230524/1684927366902_158229.mp4
     },
 
    playVideo() {

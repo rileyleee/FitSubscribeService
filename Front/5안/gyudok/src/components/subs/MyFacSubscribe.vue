@@ -32,31 +32,44 @@
 
 <script>
 import FacSubsListRow from "./include/FacSubsListRow.vue";
-import { mapGetters } from "vuex";
+import axios from "axios";
+//import { mapGetters } from "vuex";
 
 export default {
   name: "MyFacSubscribe",
   data() {
     return {
       user_id: this.$store.state.loginUser.id,
+      subscriptions: [],
     };
   },
 
   components: {
     FacSubsListRow,
   },
-  computed: {
-    ...mapGetters(["subscriptions"]),
-  },
+  // computed: {
+  //   ...mapGetters(["subscriptions"]),
+  // },
 
   created() {
-    this.$store.dispatch("getSubscriptions", this.user_id);
+    const API_URL = `http://localhost:9999/gyudok-subs/facsubs/history/${this.user_id}`;
+    axios({
+      url: API_URL,
+      method: "GET",
+    })
+      .then((res) => {
+        console.log(res);
+        this.subscriptions = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
 
 <style scoped>
-.container{
+.container {
   height: 1200px;
 }
 th {
