@@ -1,7 +1,7 @@
 # 💦운동시설 구독 웹 서비스(FitSubscribeService)
 </br>
 </br>
-### SSAFY 9th 1학기 최종 프로젝트 산출물
+## SSAFY 9th 1학기 최종 프로젝트 산출물
 https://github.com/rileyleee/FitSubscribeService/assets/116135258/30163888-35f2-474e-b0b6-678be53a3aff
 </br>
 </br>
