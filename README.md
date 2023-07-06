@@ -1,8 +1,7 @@
 # 👑운동시설 구독 웹 서비스(FitSubscribeService)
-</br>
+#### SSAFY 9th 1학기 최종 프로젝트 산출물(비전공 자바)
 </br>
 
-### SSAFY 9th 1학기 최종 프로젝트 산출물
 
 # ⏯️ 시연영상
 
@@ -18,6 +17,7 @@
 </br>
 
 # 2️⃣ 개발환경 및 협업 과정
+#### (공공데이터 포털 OPEN API 및 KAKAO MAP API 활용)
 <p align="center">
   <img src="https://github.com/rileyleee/FitSubscribeService/assets/116135258/cc106440-d5ec-47da-b227-311dbc21af63">
 </p>
@@ -25,7 +25,7 @@
 
 # 3️⃣ 요구사항 명세서
 <p align="center">
-  <img src="https://github.com/rileyleee/FitSubscribeService/assets/116135258/7acc982f-7e91-4ec1-9e59-5c0d74eade4c">
+  <img src="https://github.com/rileyleee/FitSubscribeService/assets/116135258/351318d8-13bb-458f-b004-177fa5077c23">
 </p>
 </br>
 
